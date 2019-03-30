@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/gotojmp/iploc/issues"
   },
-  "homepage": "https://github.com/gotojmp/iploc#readme",
-  "dependencies": {
-    "xlsx": "^0.14.1"
-  }
+  "homepage": "https://github.com/gotojmp/iploc#readme"
 }
