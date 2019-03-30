@@ -1,4 +1,4 @@
-const iploc = require('./index');
+const iploc = require('./index')(8000);
 
 // console.log(scan([1,3,4,5,6,26,37,48,59], 5, 0));
 // console.log(scan([1,3,4,5,6,26,37,48,59], 5, 1));
@@ -36,11 +36,11 @@ function scan (arr, search, lr) {
 
 async function test () {
     try {
-        let a = await iploc.search('6.173.98.42');
+        let a = await iploc.search('61.173.98.42');
         console.log(a);
     } catch (err) {
         console.error(err);
     }
 }
 
-setTimeout(test, 10);
+setTimeout(test, 100);

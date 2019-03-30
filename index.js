@@ -2,15 +2,13 @@ const net = require('net');
 
 const flag = '\r\n\r\n';
 
-const port = 6000;
-const host = 'localhost';
 const retry_max = 30;
 
 const iploc = {};
 
+const cache = {};
 let off = 0;
 let online = 0;
-const cache = {};
 
 const idpool = (function () {
     this.p = {};
@@ -24,7 +22,8 @@ const idpool = (function () {
     };
 })();
 
-function init () {
+function init (port, host) {
+    iploc.init = true;
     const client = net.createConnection(port, host);
     client.setEncoding('utf8');
     client.on('connect', () => {
@@ -107,6 +106,11 @@ function handlePacket (packet) {
     }
 }
 
-init();
-
-module.exports = iploc;
+module.exports = function (port, host) {
+    if (!iploc.init) {
+        port = port || 6000;
+        host = host || 'localhost';
+        init(port, host);
+    }
+    return iploc;
+};
