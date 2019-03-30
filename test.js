@@ -36,7 +36,7 @@ function scan (arr, search, lr) {
 
 async function test () {
     try {
-        let a = await iploc.search('61.173.98.42');
+        let a = await iploc.search('6.173.98.42');
         console.log(a);
     } catch (err) {
         console.error(err);

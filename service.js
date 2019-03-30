@@ -1,5 +1,5 @@
-const XLSX = require('xlsx');
 const net = require('net');
+const XLSX = require('xlsx');
 
 const flag = '\r\n\r\n';
 const IP = {};
@@ -21,9 +21,9 @@ function app (client) {
         }
     });
     client.on('close', function () {
-        console.log('disconnected', client.remoteAddress);
+        // console.log('disconnected', client.remoteAddress);
     });
-    console.log('connected', client.remoteAddress);
+    // console.log('connected', client.remoteAddress);
 };
 
 function checkPacket (data, client) {
@@ -62,18 +62,20 @@ function handlePacket (packet, client) {
 }
 
 function search (ip) {
-    console.log('searching', ip);
+    // console.log('searching', ip);
     ip = ip2int(ip);
     // console.log('ip', ip);
-    if (ip < IP.min) return null;
-    else if (ip > IP.max) return null;
-    let key = scan(IP.keys, ip);
-    // console.log('key', key);
-    let iploc = IP.hash[key];
-    console.log('iploc', iploc);
-    if (iploc && iploc.s <= ip && ip <= iploc.e) {
-        return { p: iploc.p, c: iploc.c };
+    if (IP.min <= ip && ip <= IP.max) {
+        let key = scan(IP.keys, ip);
+        // console.log('key', key);
+        let iploc = IP.hash[key];
+        // console.log('iploc', iploc);
+        if (iploc && iploc.s <= ip && ip <= iploc.e) {
+            process.stdout.write('.');
+            return { p: iploc.p, c: iploc.c };
+        }
     }
+    process.stdout.write('+');
     return null;
 }
 
