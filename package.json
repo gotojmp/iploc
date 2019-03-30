@@ -1,8 +1,8 @@
 {
-  "name": "iploc",
+  "name": "iploc-server",
   "version": "1.0.0",
   "description": "ip locate",
-  "main": "index.js",
+  "main": "service.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
